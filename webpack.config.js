@@ -29,6 +29,7 @@ module.exports = {
   },
   devtool: prod ? undefined : "source-map",
   plugins: [
+    ["styled-components", { ssr: true }],
     new HtmlWebpackPlugin({
       template: "index.html"
     }),
