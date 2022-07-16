@@ -5,6 +5,7 @@ const ContainerSlider = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0 auto;
 `;
 
 const SliderInput = styled.input`
@@ -91,6 +92,12 @@ const SliderInputLeft = styled(SliderInput)`
 const SliderInputRight = styled(SliderInput)`
   z-index: 4;
 `;
+const Button = styled.button`
+  margin: 0 auto;
+  position: absolute;
+  top: 20%;
+`;
+
 export {
   ContainerSlider,
   SliderInputContainer,
@@ -100,5 +107,6 @@ export {
   SliderTrack,
   SliderRange,
   SliderInputLeft,
-  SliderInputRight
+  SliderInputRight,
+  Button
 };

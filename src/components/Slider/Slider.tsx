@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./styles.css";
 import {
     SliderBar,
@@ -9,8 +10,10 @@ import {
     SliderRange,
     SliderLeftInput,
     SliderRightInput,
-    SliderInputContainer
+    SliderInputContainer,
+    Button
 } from "./Slider-styled";
+import { handleTick } from "../../utils/utils";
 interface Props {
     min: number;
     max: number;
@@ -31,42 +34,28 @@ const Slider: React.FC<Props> = ({
     const [maxVal, setMaxVal] = useState(max);
     const minValRef = useRef(min);
     const maxValRef = useRef(max);
-
+    const navigate = useNavigate();
     const range = useRef<HTMLDivElement>(null);
 
-    const handleTick = (value: number, range: any, direction: string) => {
-        const rangeOfElementsToShow = [...range, min, max]
-        const rangeSorted = rangeOfElementsToShow.sort((a: number, b: number) => a - b);
-        if (direction === "min") {
-            const nextStep = rangeSorted.find((step: any) => {
-                return step >= value || step === min && step;
-            });
-            return nextStep;
-        } else {
-
-            const nextStep = rangeSorted.find((step: any) => {
-                return step >= value || step === max && step;
-            });
-            return nextStep;
-        }
-    };
-
+    const handleBack = () => {
+        navigate("/");
+    }
     const handleMinValue = (e: any) => {
-        const valuemin = Math.min(Number(e.target.value), maxVal - 1);
+        const valueMin = Math.min(Number(e.target.value), maxVal - 1);
         if (lockedStep) {
-            setMinVal(handleTick(valuemin, rangeOfValues, "min"));
-            minValRef.current = handleTick(valuemin, rangeOfValues, "min");
+            setMinVal(handleTick(valueMin, rangeOfValues, "min", min, max));
+            minValRef.current = handleTick(valueMin, rangeOfValues, "min", min, max);
         } else {
-            setMinVal(valuemin);
-            minValRef.current = valuemin;
+            setMinVal(valueMin);
+            minValRef.current = valueMin;
         }
     };
 
     const handleMaxValue = (e: any) => {
         const valueMax = Math.max(Number(e.target.value), minVal + 1);
         if (lockedStep) {
-            setMaxVal(handleTick(valueMax, rangeOfValues, "max"));
-            maxValRef.current = handleTick(valueMax, rangeOfValues, "max");
+            setMaxVal(handleTick(valueMax, rangeOfValues, "max", min, max));
+            maxValRef.current = handleTick(valueMax, rangeOfValues, "max", min, max);
         } else {
             setMaxVal(valueMax);
             maxValRef.current = valueMax;
@@ -98,9 +87,10 @@ const Slider: React.FC<Props> = ({
 
     return (
         <ContainerSlider>
+            <Button onClick={handleBack}>Back</Button>
+
             <SliderInputLeft
                 id="slider1"
-
                 type="range"
                 min={min}
                 max={max}
@@ -110,7 +100,6 @@ const Slider: React.FC<Props> = ({
             />
             <SliderInputRight
                 id="slider2"
-
                 type="range"
                 min={min}
                 max={max}
