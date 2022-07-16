@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./styles.css";
 import {
     SliderBar,
     SliderInputLeft,
@@ -39,7 +38,7 @@ const Slider: React.FC<Props> = ({
 
     const handleBack = () => {
         navigate("/");
-    }
+    };
     const handleMinValue = (e: any) => {
         const valueMin = Math.min(Number(e.target.value), maxVal - 1);
         if (lockedStep) {
@@ -90,6 +89,7 @@ const Slider: React.FC<Props> = ({
             <Button onClick={handleBack}>Back</Button>
 
             <SliderInputLeft
+                role="slider1"
                 id="slider1"
                 type="range"
                 min={min}
@@ -99,6 +99,7 @@ const Slider: React.FC<Props> = ({
                 onChange={handleMinValue}
             />
             <SliderInputRight
+                role="slider2"
                 id="slider2"
                 type="range"
                 min={min}

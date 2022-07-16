@@ -95,7 +95,12 @@ const SliderInputRight = styled(SliderInput)`
 const Button = styled.button`
   margin: 0 auto;
   position: absolute;
-  top: 20%;
+  top: 40%;
+  width: 3rem;
+  height: 2rem;
+  background: #f2f4f2;
+  border-radius: 0.8rem;
+  border-color: #fdfdfd;
 `;
 
 export {

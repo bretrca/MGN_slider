@@ -8,4 +8,13 @@ const Container = styled.div`
   width: 100%;
   height: 100vh;
 `;
-export { Container };
+const Button = styled.button`
+  width: 5rem;
+  height: 2rem;
+  margin: 0.5rem;
+  background: #f2f4d7;
+  border-radius: 0.8rem;
+  border-color: #fdfdfd;
+`;
+
+export { Container, Button };
