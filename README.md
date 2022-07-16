@@ -15,7 +15,7 @@ For this solution I did a webpack configuration manual.
 
 Also added routes for the navigation and return back to init
 
-#[Future Improvements]
+# [Future Improvements]
 
 The next steps that I could make will be a list of items that are between this prices.
 Maybe the user can set the min and max in a settings component to filter in both exercises.
